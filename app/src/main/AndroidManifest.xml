@@ -9,6 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
+        <!--Was better to move this somewhere safer, or just put it in the string resource file and using DexGuard-->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDOmTLEL_QnsifLdB7NEhpJ5TdnUw7tng0" />
+
         <activity
             android:name=".main.MainActivity"
             android:label="@string/app_name">
