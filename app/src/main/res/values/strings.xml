@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Backbase Test assignment</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">City</string>
+    <string name="title_notifications">Help</string>
+    <string name="home_empty_list">There are no bookmarked places.\n Bookmark some places to have an overview of the eeatehr on those location in this tab!</string>
+</resources>
