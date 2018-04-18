@@ -85,7 +85,7 @@ public class MainActivity extends BaseFragmentActivity implements HomeFragment.H
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-                Place place = PlacePicker.getPlace(data, this);
+                Place place = PlacePicker.getPlace(this, data);
                 String toastMsg = String.format("Place: %s", place.getName());
                 Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show();
             }
