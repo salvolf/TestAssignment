@@ -47,7 +47,6 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
     public void addPlace(BookmarkedPlace place) {
         placesList.add(place);
         notifyDataSetChanged();
-
     }
 
     @Override

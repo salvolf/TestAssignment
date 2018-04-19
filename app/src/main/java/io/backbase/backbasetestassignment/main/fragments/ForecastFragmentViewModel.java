@@ -11,6 +11,8 @@ import io.backbase.backbasetestassignment.main.model.BookmarkedPlace;
 import io.backbase.backbasetestassignment.network.MyOldStyleHttpRequest;
 import io.backbase.backbasetestassignment.network.model.WeatherInfo;
 
+import static io.backbase.backbasetestassignment.network.MyOldStyleHttpRequest.*;
+
 public class ForecastFragmentViewModel {
     private final static String TAG = ForecastFragmentViewModel.class.getSimpleName();
 
@@ -24,12 +26,8 @@ public class ForecastFragmentViewModel {
     @NonNull public ObservableField<String> windSpeed = new ObservableField<>("");
     @NonNull public ObservableField<String> windDirection = new ObservableField<>("");
 
-    public ForecastFragmentViewModel() {
-
-    }
-
-    public void fetchWeatherInfoForLocation(@NonNull BookmarkedPlace selectedPlace) {
-        new MyOldStyleHttpRequest(selectedPlace.getLatitude(), selectedPlace.getLongitude(), new MyOldStyleHttpRequest.MyOldStyleHttpRequestCallback() {
+    void fetchWeatherInfoForLocation(@NonNull BookmarkedPlace selectedPlace) {
+        new MyOldStyleHttpRequest(selectedPlace.getLatitude(), selectedPlace.getLongitude(), new MyOldStyleHttpRequestCallback() {
             @Override
             public void onCallDone(WeatherInfo result) {
                 progressBarVisibility.set(View.GONE);
