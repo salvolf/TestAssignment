@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="io.backbase.backbasetestassignment.main.fragments.ForecastFragmentViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/small_margin"
+                android:text="@{@string/label_forecast_title(viewModel.desc)}"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/small_margin"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sun"
+                tools:src="@drawable/sun" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingBottom="@dimen/small_margin"
+                android:text="NB:This icon is static"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+            <!--All this copy paste could have been avoided with an included layout or with a custom view-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/small_margin"
+                android:text="@{@string/label_temp_title(viewModel.temp)}"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/small_margin"
+                android:text="@{@string/label_temp_min(viewModel.tempMin)}"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:paddingBottom="@dimen/small_margin"
+                android:paddingTop="@dimen/small_margin"
+                android:text="@{@string/label_temp_max(viewModel.tempMax)}"
+                android:textSize="18sp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="@dimen/small_margin"
+                android:text="@string/label_wind_title"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/small_margin"
+                android:text="@{@string/label_wind_speed(viewModel.windSpeed)}"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/small_margin"
+                android:text="@{@string/label_wind_direction(viewModel.windDirection)}"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <!--<FrameLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@android:color/darker_gray"-->
+            <!--android:visibility="@{viewModel.progressBarVisibility}">-->
+
+            <!--<ProgressBar-->
+                <!--android:layout_width="160dp"-->
+                <!--android:layout_height="160dp"-->
+                <!--android:layout_gravity="center" />-->
+        <!--</FrameLayout>-->
+    </RelativeLayout>
+</layout>

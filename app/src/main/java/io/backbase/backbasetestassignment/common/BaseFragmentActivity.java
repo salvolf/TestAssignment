@@ -7,21 +7,24 @@ import android.support.v7.app.AppCompatActivity;
 
 public class BaseFragmentActivity extends AppCompatActivity {
 
-    public void showFragment(@NonNull Fragment fragment, boolean addToBackStack, int containerId) {
+    protected Fragment showFragment(@NonNull Fragment fragment, boolean addToBackStack, int containerId) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Fragment alreadyaddedFragment = getSupportFragmentManager().findFragmentByTag(fragment.getClass().getSimpleName());
         if (alreadyaddedFragment != null && !alreadyaddedFragment.isVisible()) {
             transaction.replace(containerId, alreadyaddedFragment, alreadyaddedFragment.getClass().getSimpleName()).commit();
+            return alreadyaddedFragment;
         } else {
             if (alreadyaddedFragment == null) {
                 if (addToBackStack) {
                     transaction.addToBackStack(fragment.getClass().getSimpleName());
                 }
                 transaction.replace(containerId, fragment, fragment.getClass().getSimpleName()).commitAllowingStateLoss();
+                return fragment;
             }
         }
-
+        return null;
     }
+
 
     @Override
     public void onBackPressed() {
