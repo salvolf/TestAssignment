@@ -5,10 +5,12 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -42,9 +44,11 @@ public class MainActivity extends BaseFragmentActivity implements HomeFragment.H
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    binding.navigation.setVisibility(View.VISIBLE);
                     showHomeFragment();
                     return true;
                 case R.id.navigation_notifications:
+                    binding.navigation.setVisibility(View.VISIBLE);
                     showFragment(new HelpFragment(), false, binding.container.getId());
                     return true;
             }
@@ -65,7 +69,9 @@ public class MainActivity extends BaseFragmentActivity implements HomeFragment.H
     private void showHomeFragment() {
         HomeFragment homeFragment = new HomeFragment();
         HomeFragment addedFragment = (HomeFragment) showFragment(homeFragment, false, binding.container.getId());
-        addedFragment.setCallback(this);
+        if (addedFragment != null) {
+            addedFragment.setCallback(this);
+        }
     }
 
     @Override
@@ -88,11 +94,19 @@ public class MainActivity extends BaseFragmentActivity implements HomeFragment.H
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Fragment shownfragment = getSupportFragmentManager().findFragmentById(binding.container.getId());
+        binding.navigation.setVisibility(shownfragment instanceof ForecastFragment ? View.GONE : View.VISIBLE);
+    }
+
+    @Override
     public void onPlaceSelected(BookmarkedPlace place) {
         ForecastFragment forecastFragment = new ForecastFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelable(ForecastFragment.FORECAST_FRAGMENT_KEY, place);
         forecastFragment.setArguments(bundle);
+        binding.navigation.setVisibility(View.GONE);
         showFragment(forecastFragment, true, binding.container.getId());
     }
 
@@ -109,6 +123,7 @@ public class MainActivity extends BaseFragmentActivity implements HomeFragment.H
             }
         }
     }
+
 
     @Override
     public void onCallCompleted(WeatherInfo response) {
